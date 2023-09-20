@@ -1,0 +1,71 @@
+User Administration Files:
+  /etc/passwd: which is responsible for storing user account and password information.
+  /etc/shadow: responsible for storing encrypted passwords of a corresponding user account.
+  /etc/group: this will contain group information for each account.
+  etc/gshadow: holds secured group accounts information.
+
+Operations in User Mgmt: 
+  useradd/adduser: add a user to the system.
+  userdel/deluser: delete a user account and related files.
+  groupadd/addgroup: add a group to the system.
+  groupdel/delgroup: remove a group from the system.
+  usermod: modify a user account.
+  chage: change user password expiry information.
+  sudo: run one or more commands as another user (typically with superuser permissions).
+  Relevant files: /etc/passwd (user information), /etc/shadow (encrypted passwords), /etc/group (group information) and /etc/sudoers (configuration for sudo).
+
+Creating User: sudo adduser [options] [username]
+  You might need to set a password and provide optional details for a new user. The information will be saved in /etc/passwd with colons as separators. 
+  If not, you can set a password for the new account named pluralsight using: passwd username
+
+Deleting a user: userdel username
+
+Creating Group: groupdadd [options] [groupname]
+Modifying Group: groupmod -n employees marketing  //Assuming we want to change the group name employees to marketing we can write,
+                 groupmod -g newGID marketing     // To change the GID we use the -g option as follows,
+
+Deleting Group: groupdel marketing
+Add user to group: sudo usermod -a -G marketing johndoe
+Remove user from group: sudo deluser johndoe marketing
+View group that user belongs to: groups username
+View information about all logged in users: finger
+switch accounts from current user to johndoe account: sudo su johndoe
+
+Note: There is a file called the /etc/sudoers file, this file lists users who can run sudo.
+
+---
+/etc/passwd file:
+  cat /etc/passwd  //This file shows you a list of users and detailed information about them
+  first line in this file most likely looks like this: 
+  root:x:0:0:root:/root:/bin/bash
+
+  root: it is username
+
+  x: Users password, the password is not really stored in this file, it's usually stored in the /etc/shadow file.
+     You can see many different symbols that are in this field, if you see an "x" it means the password is stored in the /etc/shadow file
+     if you see a "*" it means the user doesn't have login access. if there is a blank field that means the user doesn't have a password.
+  
+  0: it means UID
+
+  0: it means group id
+
+  root: GECOS field 
+
+  root: user's home directory
+
+  /bin/bash: User's shell
+
+---
+
+/etc/shadow:
+  The /etc/shadow file is used to store information about user authentication. 
+  It requires superuser read permissions.
+  Command: sudo cat /etc/shadow
+  when you run above command output is like this: 
+  root:MyEPTEa$6Nonsense:15000:0:99999:7:::
+
+  It means: username, encrypted password , Date of last password changed ,Minimum password age.....
+
+Note: January 1, 1970 is the epoch date for Unix time, the standard for timestamps in computer programming. This date is often called the Unix epoch. 
+      Programmers chose this date because it was the closest round date when they invented Unix time. 
+
