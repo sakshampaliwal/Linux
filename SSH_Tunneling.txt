@@ -1,0 +1,42 @@
+SSH Tunneling:
+- SSH tunneling, or SSH port forwarding, is a method of transporting arbitrary data over an encrypted SSH connection. 
+  SSH tunnels allow connections made to a local port (that is, to a port on your own desktop) to be forwarded to a remote machine via a secure channel.
+
+- To protect our network services, not all of them are reachable directly from outside the ENCS network. 
+  If you are offsite and need to access a resource that is protected in this way, 
+  you can use ssh to tunnel through an accessible resource to reach the protected resource.
+
+- SSH is a standard for secure remote logins and file transfers over untrusted networks. 
+  It also provides a way to secure the data traffic of any given application using port forwarding, basically tunneling any TCP/IP port over SSH.
+
+- Some networks or countries have strict firewalls that block certain websites or services. 
+  SSH tunneling can help you bypass these restrictions and access blocked content.
+
+- So SSH tunneling is just a way to transport arbitrary data with a dedicated data stream (tunnel) inside an existing SSH session. 
+  This can be achieved with either local port forwarding, remote port forwarding, dynamic port forwarding, or by creating a TUN/TAP tunnel
+
+Types of SSH Tunneling/Forwarding:
+
+1. Local Port Forwarding:
+   When you create an SSH tunnel with local port forwarding, the SSH tunnel forwards the data from the port on the client machine to the port on the server machine. 
+   It is the simplest form of SSH tunnel.
+
+   Command: ssh -L 1234:localhost:5678 remoteuser@remotehost
+
+   In this command, “-L” refers to the local side forwarding. With the above command, all the data coming on “port 1234” of your machine will be 
+   encapsulated as SSH data and forwarded to “port 5678” of the remotehost. 
+   In the above example, “localhost” refers to the localhost IP of a remote machine.
+
+   SSH forwards two local ports, 3338 and 3339, to remote ports 3338 and 3339.
+   ssh -L 3338:localhost:3338 -L 3339:localhost:3339 user@<remote_server>
+
+2. Remote Port Forwarding(Reverse Tunneling):
+   It enables you to expose a local service on your computer to a remote server. It's handy when you want to make a service on your computer available to others on a remote network.
+   
+   Command: ssh -R 1234:localhost:5678 remoteuser@remotehost
+
+   In this command, “-R” refers to the remote side listening and listens to the “port 1234” on the remote machine and 
+   forwards all the data from “port 1234” of the remote machine to the “port 5678” on your local machine.
+
+3. Dynamic Port Forwarding:
+   
