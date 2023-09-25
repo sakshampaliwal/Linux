@@ -1,0 +1,26 @@
+Interactive Shell:
+An interactive shell is a command-line interface that allows users to enter commands and receive output in real-time. It provides a prompt for users to type commands and interact with the system.
+An interactive shell is defined as the shell that simply takes commands as input on tty from the user and acknowledges the output to the user.
+For example, a bash shell is an interactive shell. 
+
+Non-Interactive Shell:
+a non-interactive shell is a shell that runs without user interaction. It is typically used for running scripts or executing commands in the background.
+Scripts like Init and startup are considered non-interactive since they must run without human intervention.
+
+There are two types of shells: login shells and non-login shells. A login shell is the first shell that a user encounters when logging into the system. It requires the user to enter their username and password. A non-login shell, on the other hand, is started after the user has logged in and does not require authentication.
+When a user successfully logs in to a Linux system via terminal, SSH, or switches to a user with the “su -” command, a Login shell is created.
+
+When a login shell starts, it executes a set of pre-configured scripts to set up the environment. You may run this command on the terminal to discover which shell you are using. 
+echo $0 
+If the result is “-bash” or “-su”, you are on the login shell. Non logins shell output will be bash or su
+
+TTY(Teletypewriter):
+In early days, machines known as teleprinters were developed. These machines could send typed messages "down the wire" to distant locations. The messages were typed by the sender on a keyboard of sorts. They were printed on paper at the receiving end. 
+In Linux, the term "TTY" refers to a terminal device. It represents the physical or virtual device through which a user interacts with the system.
+When you log in to a Linux system through a terminal, graphical terminal emulator, or over SSH, you are essentially using a TTY.
+ Linux uses a device file to represent a virtual TTY, which enables interaction with the OS by handling input (usually a keyboard) and output (usually a screen).
+
+PTY(Pseudo-Terminal):
+It is a virtual terminal that emulates(mimics) a real terminal. It allows programs to have terminal input/output capabilities without being connected to an actual hardware terminal.
+ For example, when you run an SSH session, the SSH server creates a PTY pair to manage the communication between your local terminal and the remote server.
+
