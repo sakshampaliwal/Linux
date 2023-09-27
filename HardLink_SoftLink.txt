@@ -1,0 +1,31 @@
+Hard Link:
+Every file on the Linux filesystem starts with a single hard link. The link is between the filename and the actual data stored on the filesystem.
+Hard links allow multiple directory entries (filenames) to refer to the same inode and its associated data blocks on the disk. In essence, hard links create multiple names for the same file, and all these names share the same data on the disk.
+A hard link is a reference to an inode. Each file and directory on a file system is associated with a unique inode. Inodes contain metadata about the file or directory, 
+The inode number is used as a unique identifier for each file or directory within a file system.
+You can view the inode number of a file or directory: ls -i filename
+When you create a hard link, you're essentially creating a new directory entry that points to the same inode.
+Hard links can not link directories 
+Creating a hard link does not consume additional disk space because it only involves creating another directory entry that points to an existing inode. 
+changes made to one hard link will be reflected in all other hard links because they all reference the same data blocks.
+Hard links cannot span across different file systems or partitions because they rely on inode numbers, which are only unique within a given file system.
+When you delete a file from one location it will remains on other location until link number goes to zero.
+
+Use stat filename command to see detailed info about the file.
+
+Creating Hard Link: ln file1.txt hardlink.txt 
+
+Soft Link: 
+Commonly referred to as symbolic links.
+a soft link is not a standard file, but a special file that points to an existing file. 
+Unlike a hard link, which directly points to the inode of the target file, a soft link contains the path to the target file or directory.
+The symbolic link and the target file or directory have different inode numbers. This means they are distinct entities on the filesystem.
+Symbolic links are like signposts that guide you to the actual file or location.
+Symbolic links can point to files or directories on different filesystems or partitions because they reference paths, not inodes.
+symbolic links can link to directories.
+
+The biggest concern is data loss and data confusion. If the original file is deleted, the soft link is broken. This situation is referred to as a dangling soft link. 
+If you were to create a new file with the same name as the original, your dangling soft link is no longer dangling at all. It points to the new file created, whether this was your intention or not.
+
+To create soft link: ln -s /path/to/target /path/to/symlink
+
