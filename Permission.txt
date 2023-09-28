@@ -1,0 +1,55 @@
+Symbolic Method:
+
+Who - represents identities: u,g,o,a (user, group, other, all)
+What - represents actions: +, -, = (add, remove, set exact)
+Which - represents access levels: r, w, x (read, write, execute)
+
+Numeric Method:
+0 = No Permission
+1 = Execute
+2 = Write
+4 = Read
+
+-rw-r--r--
+
+
+SUID:
+When the SUID bit is set on an executable file, the program will be executed with the permissions of the file's owner, rather than the permissions of the user who is running it.
+For example, the passwd command needs to modify the /etc/passwd file (which is typically only writable by the root user), so it has the SUID bit set to allow non-root users to change their passwords.
+This is the reason why you can use the passwd command to change your own password despite of the fact that the files this command modifies are owned by root.
+
+Why can a normal user not change the password of other users?
+ If you can run the passwd command as a regular user with the same permissions as root and modify the files like /etc/passwd, why can you not change the password of other users?
+ If you check the code for the passwd command, you’ll find that it checks the UID of the user whose password is being modified with the UID of the user that ran the command. If it doesn’t match and if the command wasn’t run by root, it throws an error.
+
+To set the SUID: chmod u+s filename
+You can also use the numeric way. You just need to add a fourth digit to the normal permissions. The octal number used to set SUID is always 4.
+chmod 4766 test2.txt
+now this will instruct os that when any user runs this particular file, the file will be executed with the permissions of the file's owner, rather than with the permissions of the user who is running it. 
+
+To remove the SUID: chmod u-s test.txt
+chmod 0766 test2.txt
+
+SGID:
+When the SGID bit is set on an executable file, the program will be executed with the permissions of the file's group owner, rather than the permissions of the user who is running it.
+This is useful for scenarios where multiple users need to collaborate on files in a shared directory. For example, a shared project directory might have the SGID bit set to ensure that all files created in that directory belong to the same group.
+Imagine you have a folder called "shared_folder," and several users need to collaborate on files within that folder. However, you want to ensure that all files created in this folder belong to a specific group, like "project_team," regardless of who creates them.
+The numeric value for SGID is 2.
+
+To set SGID: chmod g+s filename  or chmod 2xxx directory
+To remove SGID: chmod g-s filename or chmod 0755 folder
+
+Sticky Bit:
+The sticky bit is a special permission that can only be set on directories. When the sticky bit is enabled on a directory, it restricts the ability to delete or rename files within that directory to the file owner, the directory owner, and the superuser.
+When the sticky bit is set on a directory, only the owner of a file within that directory or the superuser can delete or rename that file, even if other users have write permissions on the directory.
+This is often used on directories like /tmp, where multiple users need to write temporary files, but you want to ensure that they can only delete their own files and not files belonging to other users.
+The numeric value for the sticky bit is 1.
+
+To set Sticky Bit: chmod +t filename  or chmod 1777 public
+To remove Sticky Bit: chmod -t filename
+
+SUID = 4
+SGID = 2
+Sticky = 1
+The syntax is: chmod X### file | directory
+Where X is the special permissions digit.
