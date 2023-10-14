@@ -69,3 +69,18 @@ Note: There is a file called the /etc/sudoers file, this file lists users who ca
 Note: January 1, 1970 is the epoch date for Unix time, the standard for timestamps in computer programming. This date is often called the Unix epoch. 
       Programmers chose this date because it was the closest round date when they invented Unix time. 
 
+
+w :
+- Used to display information about currently logged-in users and what they are doing on the system. 
+- It provides a summary of user activity, including their login time, current processes, and idle time.
+
+su:
+- Switch User, used to temporarily switch to another user account from within your current user session.
+- by providing password.
+- Syntax: su username
+- if you use : su then it will switch to root user
+- if i use su - username then it means we are permanently switching to that user while if we are using 
+  without we are temporarily switching to it and it is just behaving that it switches it.
+
+visudo:
+- 

@@ -53,3 +53,26 @@ SGID = 2
 Sticky = 1
 The syntax is: chmod X### file | directory
 Where X is the special permissions digit.
+
+
+Umask:
+It stands for "user file creation mask," and it is a command and a file permission mask that determines the default permissions for newly created files and directories. 
+For example, with the usual Umask being set to 0022 on most systems all the new files we create will subtract the Umask value from full permissions (for files that would be 666 - 022 = 644). Umask can be expressed in octal or symbolic values. 
+0 represents special permissions, 0 represents user permissions, 2 represents group,2 represents other permissions.
+Maximum permissions for file is 666, we generally not give execute permissions.
+We can see umask value by running: unmask
+
+Simply subtract that value from the default permissions Linux sets for files and directories before umask which is 666 for files and 777 for directories.
+New files: 666 - 022 = 644  //default permission for file is 666
+New directories: 777 - 022 = 755  //default permission for folder is 777
+
+To set umask value command: umask 022
+
+The umask value is typically set in a user's shell profile (e.g., ~/.bashrc, ~/.bash_profile) 
+
+
+To create a dir with given permission: mkdir -m 700 abc  //here m means mode
+
+Like when we copy files we use this : cp filename /location , now this command will copy the file but the
+file permission and owner changes as the new owner created it.
+So to prevent this we can use this cmd: cp -p filename /location
