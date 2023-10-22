@@ -1,0 +1,41 @@
+Buffer:
+-Buffers are primarily used to smooth out differences in data transfer speeds between the CPU and storage devices. 
+ When a program requests data from a storage device, the data is read in larger chunks into a buffer. 
+ The program can then access the data from the buffer, which is typically faster than reading data directly from the storage device.
+-A buffer is a region of memory used to temporarily store data being transferred between two locations, 
+ such as a program and a storage device. It acts as a temporary holding area for data that is either 
+ read from or written to a storage device.
+-For example, multiple small writes can be merged into a single large write, etc.
+-Buffers are usually not very large, about 20MB.
+ Buffers are typically associated with I/O operations, such as file read and write operations.
+
+Cache:
+-It is a region of memory used to store frequently accessed data or instructions. 
+ The goal of a cache is to reduce the latency of data access by keeping a copy of frequently 
+ used data readily available in memory.
+-When the CPU needs data, it first checks the cache for the data. If the data is found in 
+ the cache (cache hit), the CPU can access it quickly. If the data is not in the cache (cache miss), 
+ the CPU fetches it from the main memory.
+-Caching in RAM is referred to as memory caching, while caching in a hard disk is 
+ referred to as disk caching.
+-We can use the free command to check the sizes of the buffer memory and cache memory.
+
+
+RAM  is a type of memory that needs a constant supply of power for retaining the data present in it. It means that as soon as the power supply to the laptop or PC gets disrupted (switched off), the information stored in this memory type will be lost. Thus, it is called volatile memory.
+
+Static RAM:
+-SRAM is a type of RAM that stores each bit of data in a flip-flop circuit, which is comprised of 
+ multiple transistors. This means that data remains stored as long as power is supplied to the SRAM cell.
+-It is faster and more stable than DRAM because it doesn't require constant refreshing. 
+-SRAM suitable for use in cache memory in CPUs and other applications where speed is crucial.
+-SRAM is commonly used for a computer’s memory cache. For example, they can be found in a processor’s L2 or L3 cache. 
+ Because of its cost and size, SRAM is not generally used for a computer’s main memory. 
+
+Dynamic RAM:
+-DRAM or Dynamic RAM is widely used as a computer’s main memory. This type of RAM is made up of a 
+ transistor and a capacitor within an integrated circuit. Data bits are stored in the capacitor.
+-Transistors always leak a bit which also means that the capacitors slowly discharge — in turn, 
+ information stored in a DRAM tends to drain. This reason is why DRAM needs to be refreshed every once in a while to retain data. 
+ By “refreshing” a DRAM, it means giving it a new electronic charge.
+-DRAM has a higher storage capacity which enables you to create a larger RAM space system.
+
