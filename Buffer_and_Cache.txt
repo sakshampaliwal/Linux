@@ -21,7 +21,9 @@ Cache:
 -We can use the free command to check the sizes of the buffer memory and cache memory.
 
 
-RAM  is a type of memory that needs a constant supply of power for retaining the data present in it. It means that as soon as the power supply to the laptop or PC gets disrupted (switched off), the information stored in this memory type will be lost. Thus, it is called volatile memory.
+RAM  is a type of memory that needs a constant supply of power for retaining the data present in it. 
+It means that as soon as the power supply to the laptop or PC gets disrupted (switched off), the information stored in this memory type will be lost. 
+Thus, it is called volatile memory.
 
 Static RAM:
 -SRAM is a type of RAM that stores each bit of data in a flip-flop circuit, which is comprised of 
