@@ -1,10 +1,13 @@
 Stages of Linux Boot Process:
  
 1. BIOS(Power On): 
-   When you turn on your computer, the BIOS (Basic Input/Output System) or UEFI (Unified Extensible Firmware Interface) firmware is activated. This firmware is responsible for initializing hardware components and starting the boot process.
+   When you turn on your computer, the BIOS (Basic Input/Output System) or UEFI (Unified Extensible Firmware Interface) firmware is activated. 
+   This firmware is responsible for initializing hardware components and starting the boot process.
    The BIOS is the first step in any operating system’s boot process and is independent of the operating system that is to be loaded. 
-   POST (Power-On Self-Test): The BIOS or UEFI performs a self-test of your hardware components like the CPU, RAM, and storage devices to ensure they are functioning correctly.
-   It looks for boot loader in floppy, cd-rom, or hard drive. You can press a key (typically F12 of F2, but it depends on your system) during the BIOS startup to change the boot sequence.
+   POST (Power-On Self-Test): The BIOS or UEFI performs a self-test of your hardware components like the CPU, RAM, and storage 
+   devices to ensure they are functioning correctly.
+   It looks for boot loader in floppy, cd-rom, or hard drive. 
+   You can press a key (typically F12 of F2, but it depends on your system) during the BIOS startup to change the boot sequence.
    Once the boot loader program is detected and loaded into the memory, BIOS gives the control to it.
    So, in simple terms BIOS loads and executes the MBR boot loader.
 
@@ -16,41 +19,57 @@ Stages of Linux Boot Process:
 
 3. GRUB:
    GRUB stands for Grand Unified Bootloader. If you have multiple kernel images installed on your system, you can choose which one to be executed.
-   GRUB displays a splash screen, waits for few seconds, if you don’t enter anything, it loads the default kernel image as specified in the grub configuration file.
+   GRUB displays a splash screen, waits for few seconds, if you don’t enter anything, it loads the default kernel image as 
+   specified in the grub configuration file.
 
 4. Kernel:
     After the boot loader loads the kernel into memory, the kernel begins the process of initializing the system. 
     During this stage, the kernel identifies and loads the necessary drivers and modules required for the system to function.
     Another critical aspect of kernel initialization is the initiation of the initial RAM disk (initrd) or initial RAM file system (initramfs). 
-    The initrd or initramfs contains a minimal file system and necessary kernel modules that are loaded into memory before the root file system is mounted. 
+    The initrd or initramfs contains a minimal file system and necessary kernel modules that are loaded into memory 
+    before the root file system is mounted. 
     The initrd or initramfs allows the kernel to have access to the necessary files and drivers to mount the root file system.
     Since init was the 1st program to be executed by Linux Kernel, it has the process id (PID) of 1.
     initrd is used by kernel as temporary root file system until kernel is booted and the real root file system is mounted.
 
 5. Init:
    After the kernel completes its initialization process, it passes control to the Initialization system or Init system. 
-    The Init procedure begins by deciding which run level should be used to start the system, which determines the system services and processes that are to be started. 
+    The Init procedure begins by deciding which run level should be used to start the system, which determines the system services 
+    and processes that are to be started. 
     Looks at the /etc/inittab file to decide the Linux run level.
-    Following are the available run levels: 0 – halt, 1 – Single user mode, 2 – Multiuser, without NFS, 3 – Full multiuser mode, 4 – unused, 5 – X11, 6 – reboot.
-    There are three primary initialization systems in Linux. These are SysVinit, Upstart, and Systemd. These init systems are responsible for controlling the startup and shutdown of the system.
+    Following are the available run levels: 
+    0 – halt, 1 – Single user mode, 2 – Multiuser, without NFS, 3 – Full multiuser mode, 4 – unused, 5 – X11, 6 – reboot.
+    There are three primary initialization systems in Linux. These are SysVinit, Upstart, and Systemd. 
+    These init systems are responsible for controlling the startup and shutdown of the system.
 
 6. RunLevel Programs:
-   A runlevel can simply be thought of as the state your system enters like if a system is in a single-user mode it will have a runlevel 1 while if the system is in a multi-user mode, it will have a runlevel 5.
+   A runlevel can simply be thought of as the state your system enters like if a 
+   system is in a single-user mode it will have a runlevel 1 while if the system is in a multi-user mode, it will have a runlevel 5.
    Runlevels are numbered from 0 to 6, and each runlevel has a specific purpose.
    Runlevel 0-> Shuts down the system.
    Runlevel 1-> Single user mode, which is used for maintenance or administrative tasks.
-   Runlevels 2 to 5-> Multi User mode, By default, many Linux distributions set runlevel 3 as the multi-user text mode, while runlevel 5 is the graphical user interface (GUI) mode.
+   Runlevels 2 to 5-> Multi User mode, By default, many Linux distributions set runlevel 3 as the multi-user text mode, 
+   while runlevel 5 is the graphical user interface (GUI) mode.
    Runlevel 6-> This is the reboot runlevel. When your computer enters runlevel 6, it's restarting.
 
 
 Summary:
-1. Power On: When you turn on your computer, the BIOS (Basic Input/Output System) or UEFI (Unified Extensible Firmware Interface) firmware is activated. This firmware is responsible for initializing hardware components and starting the boot process.
-2. POST (Power-On Self-Test): The BIOS or UEFI performs a self-test of your hardware components like the CPU, RAM, and storage devices to ensure they are functioning correctly.
-3. Boot Device Selection: The firmware checks the boot order, a list of devices (usually hard drive, SSD, CD/DVD drive, USB drive) in order of priority, and determines which device to boot from. It typically looks for a bootloader on these devices.
-4. Bootloader: If you're using a traditional BIOS, the bootloader used is often GRUB (Grand Unified Bootloader), while UEFI systems may use GRUB2 or another bootloader. The bootloader's job is to load the kernel, which is the core of the Linux operating system.
-5. Kernel Initialization: The bootloader loads the Linux kernel into memory. The kernel is responsible for managing hardware resources, process scheduling, and other low-level tasks.
-6. Init Process: The kernel starts the init process (or its modern replacement, such as systemd), which is the first user-space process. It initializes the system and starts other essential services.
-7. User Space Initialization: Once the init process is running, it initializes user-space services, mounts file systems, and starts essential system daemons and services.
-8. Login: After initialization is complete, you're presented with a login prompt, typically in a text or graphical mode, depending on your system's configuration.
-9. User Login: You log in with your username and password. Upon successful authentication, you're given access to your Linux desktop or command line interface, depending on your system configuration.
+1. Power On: When you turn on your computer, the BIOS (Basic Input/Output System) or UEFI (Unified Extensible Firmware Interface) firmware is activated. 
+   This firmware is responsible for initializing hardware components and starting the boot process.
+2. POST (Power-On Self-Test): The BIOS or UEFI performs a self-test of your hardware components like the CPU, RAM, and storage devices 
+   to ensure they are functioning correctly.
+3. Boot Device Selection: The firmware checks the boot order, a list of devices (usually hard drive, SSD, CD/DVD drive, USB drive) 
+   in order of priority, and determines which device to boot from. It typically looks for a bootloader on these devices.
+4. Bootloader: If you're using a traditional BIOS, the bootloader used is often GRUB (Grand Unified Bootloader), while UEFI systems may
+   use GRUB2 or another bootloader. The bootloader's job is to load the kernel, which is the core of the Linux operating system.
+5. Kernel Initialization: The bootloader loads the Linux kernel into memory. The kernel is responsible for 
+   managing hardware resources, process scheduling, and other low-level tasks.
+6. Init Process: The kernel starts the init process (or its modern replacement, such as systemd), which is the first user-space process. 
+   It initializes the system and starts other essential services.
+7. User Space Initialization: Once the init process is running, it initializes user-space services, mounts 
+   file systems, and starts essential system daemons and services.
+8. Login: After initialization is complete, you're presented with a login prompt, typically in a text or graphical mode, 
+   depending on your system's configuration.
+9. User Login: You log in with your username and password. Upon successful authentication, 
+   you're given access to your Linux desktop or command line interface, depending on your system configuration.
 10. User Session: Your user session begins, and you can start using your Linux system to run applications and perform tasks.
