@@ -1,0 +1,55 @@
+at command:
+- allows you to schedule commands to be executed at a particular time. Jobs created with at are executed only once.
+- at [OPTION...] runtime
+-f: Specifies a file containing the commands to be executed.
+-t: Specifies the time at which to run the commands using a Unix timestamp.
+-m: Sends an email to the user when the job has completed.
+-q: Specifies a queue in which to place the job.
+
+The “at” command supports various time formats, such as:
+Relative time: “now + 1 hour” or “now + 30 minutes”
+Absolute time: “2:30 PM” or “15:30”
+Date and time: “10:00 AM tomorrow” or “2023-04-01 18:00”
+
+>at 09:00  //Once you hit Enter, you’ll be presented with the at command prompt that most often starts with at>. You also see a warning that tells you the shell in which the command will run:
+When you’re done entering the commands, press Ctrl-D to exit the prompt and save the job.
+
+Another way to pass the command is to use echo and pipe the command to at:
+> echo "command_to_be_run" | at 09:00
+
+To read the commands from a file instead of the standard input, invoke the command with -f option following by the path to the file. 
+> at 09:00 -f /home/linuxize/script.sh
+
+By default, when a job is completed, the system will send an email notification to the user containing any output produced by the command. However, if the user wants to suppress this email notification, they can use the "-M" option when invoking the "at" command. This will prevent any email notifications from being sent.
+
+To list all scheduled jobs: > atq   //typically includes the job number, the date and time the job is scheduled to run, and the username of the owner of the job.
+
+To remove a scheduled job, use the “atrm” command followed by the job ID: atrm <job_id> 
+
+Schedule task at 10:00 AM on coming 22’nd June 2015.: at 10:00 AM 6/22/2015 or at 10:00 AM 6.22.2015 
+Schedule task at 10:00 AM on the same date as next month:at 10:00 AM next month 
+
+
+> tail /var/log/cron  //to see the log that our job executed successfully
+
+w command: 
+It is used to display information about the currently logged-in users and what they are doing on the system. It provides a snapshot of user activity, including details about the terminal or remote session they are using, their login time, idle time, and the commands they are running.
+
+tty command:
+It is used to print the file name of the terminal connected to the standard input.
+
+Let's say you want to change the scheduled job then open /var/spool/at here you see the scheduled jobs. 5 digit is job id which is in hexadecimal format.
+
+
+Crontab:
+- The name "crontab" stands for "cron table," where "cron" is a time-based job scheduler in Unix-like systems.
+- To use cron, you first need to create a crontab file. This file is a text file that contains the commands that you want to run. The crontab file is located in the /etc/crontab directory.
+- Syntax:
+* * * * * command_to_be_executed
+| | | | |
+| | | | +----- Day of the week (0 - 6, Sunday to Saturday, or use names like "sun," "mon")
+| | | +------- Month (1 - 12, or use names like "jan," "feb")
+| | +--------- Day of the month (1 - 31)
+| +----------- Hour (0 - 23)
++------------- Minute (0 - 59)
+
