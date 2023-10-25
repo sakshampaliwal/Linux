@@ -18,6 +18,7 @@ Creating User: sudo adduser [options] [username]
   You might need to set a password and provide optional details for a new user. The information will be saved in /etc/passwd with colons as separators. 
   If not, you can set a password for the new account named pluralsight using: passwd username
 
+To see current username: whoami
 Deleting a user: userdel username
 
 Creating Group: groupdadd [options] [groupname]
@@ -46,13 +47,9 @@ Note: There is a file called the /etc/sudoers file, this file lists users who ca
      if you see a "*" it means the user doesn't have login access. if there is a blank field that means the user doesn't have a password.
   
   0: it means UID
-
   0: it means group id
-
   root: GECOS field 
-
   root: user's home directory
-
   /bin/bash: User's shell
 
 ---
@@ -82,5 +79,3 @@ su:
 - if i use su - username then it means we are permanently switching to that user while if we are using 
   without we are temporarily switching to it and it is just behaving that it switches it.
 
-visudo:
-- 
