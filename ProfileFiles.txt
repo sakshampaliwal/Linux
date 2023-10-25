@@ -6,61 +6,79 @@ Ubuntu--> Debian based
 /etc/profile:
 - The /etc/profile file is a system-wide startup file in Linux. It is used to set environment variables for all users who log in to the system.
 - This may be more effective for administrators to configure if there are settings that apply to all users.
-- The system reads the /etc/profile file first for Bash shell configurations during user login. User-specific Bash customizations are then pulled from the .profile file in the user's home directory.
+- The system reads the /etc/profile file first for Bash shell configurations during user login. User-specific Bash customizations are then pulled 
+  from the .profile file in the user's home directory.
 - The file typically includes global or local environment variables, PATH information, terminal settings, security commands, and a message of the day or disclaimer.
-- System administrators can use the /etc/profile file to enforce system-wide configurations, ensuring that all users have a uniform environment, including default PATH settings, umask values, and locale settings.
-- Users can also have their own customization files like ~/.bash_profile and ~/.bashrc. These files allow individual users to tailor their environment by adding personal aliases, functions, and environment variables that suit their specific needs. 
+- System administrators can use the /etc/profile file to enforce system-wide configurations, ensuring that all users have a uniform environment, 
+  including default PATH settings, umask values, and locale settings.
+- Users can also have their own customization files like ~/.bash_profile and ~/.bashrc. These files allow individual 
+  users to tailor their environment by adding personal aliases, functions, and environment variables that suit their specific needs. 
 - PATH environment variable, PS1, Setting Hostname, and to execute other scripts like inputrc,bashrc. So these are the few works done by this file.
 Types: 1. System Profile files   2. User Profile files
 
 .bash_history: 
-It serves as a command history file, allowing users to review and recall previous commands that they have executed in their terminal sessions. 
-Each time a user runs a command in a Bash shell session, a record of that command is appended to the .bash_history file. This file acts as a chronological log of the commands a user has entered.
-The leading dot in the file name (i.e., .bash_history) makes it a hidden file. Each user on a Linux system has their own .bash_history file. 
-The size of the .bash_history file is typically limited to a certain number of commands. This is controlled by the HISTSIZE and HISTFILESIZE environment variables. When the file reaches the specified size, older commands are overwritten with newer ones.
-Since it logs all commands, sensitive or private information could be exposed if the file is accessed by unauthorized users. As a result, users should be cautious and may consider periodically clearing their history.
-Users can view their command history by simply running the history command in the terminal.
-They can also use the up and down arrow keys to navigate through previous commands. Additionally, commands from the history can be executed again by using the ! followed by the command number (e.g., !123 to re-run the 123rd command).
+- It serves as a command history file, allowing users to review and recall previous commands that they have executed in their terminal sessions. 
+- Each time a user runs a command in a Bash shell session, a record of that command is appended to the .bash_history file. 
+  This file acts as a chronological log of the commands a user has entered.
+- The leading dot in the file name (i.e., .bash_history) makes it a hidden file. Each user on a Linux system has their own .bash_history file. 
+- The size of the .bash_history file is typically limited to a certain number of commands. This is controlled by the HISTSIZE and HISTFILESIZE 
+  environment variables. When the file reaches the specified size, older commands are overwritten with newer ones.
+- Since it logs all commands, sensitive or private information could be exposed if the file is accessed by unauthorized users. 
+  As a result, users should be cautious and may consider periodically clearing their history.
+- Users can view their command history by simply running the history command in the terminal.
+- They can also use the up and down arrow keys to navigate through previous commands. Additionally, commands 
+  from the history can be executed again by using the ! followed by the command number (e.g., !123 to re-run the 123rd command).
 
 .bashrc:
-.bashrc (short for bash read command) is a configuration file for the Bash shell environment. Every time an interactive Bash shell session starts, the .bashrc script file executes.
-System wide functions and aliases are present on this file.
-Each user on a Linux system can have their own .bashrc file. This means that the configurations specified in the .bashrc file apply only to the user for whom the file is created. 
-E.g we can create aliases: alias hist = 'history | grep'  (calling: hist <word>)
-alias ping='ping -c 5'  (here we are saying that whenever ping command is executed then ping it 5 times only)
-alias update='sudo apt update && sudo apt upgrade'
+- .bashrc (short for bash read command) is a configuration file for the Bash shell environment. 
+  Every time an interactive Bash shell session starts, the .bashrc script file executes.
+- System wide functions and aliases are present on this file.
+- Each user on a Linux system can have their own .bashrc file. 
+  This means that the configurations specified in the .bashrc file apply only to the user for whom the file is created. 
+- E.g we can create aliases: alias hist = 'history | grep'  (calling: hist <word>)
+  alias ping='ping -c 5'  (here we are saying that whenever ping command is executed then ping it 5 times only)
+  alias update='sudo apt update && sudo apt upgrade'
 
 The .bashrc file location is in the user's home directory, and any text editor can read and edit its contents.
 Backup the current .bashrc file: cp ~/.bashrc ~/.bashrc.bak
 The backup allows rolling back changes in case of any errors or problems.
 vim ~/.bashrc  //to edit the file, tild symbol indicates users home directory
 
-.bash_profile is specifically for login shells and executes once at login, while .bashrc is for all interactive shells, whether they are login shells or subshells, and executes each time you start a new shell session.
+.bash_profile is specifically for login shells and executes once at login, while .bashrc is for all interactive shells, 
+whether they are login shells or subshells, and executes each time you start a new shell session.
 A login shell is initiated during the login process, whereas an interactive shell is started after the user has logged in and interacts with the system.
 
 
 .bash_logout:
-The .bash_logout file is the individual login shell cleanup file. It is executed when a login shell exits. 
-The file ~/.bash_logout is read and executed every time a login shell exits. Thus, you can log out by typing the 'logout' command or by pressing CTRL+D keyboard shortcut keys
-The primary purpose of the .bash_logout file is to define actions and commands that should be executed when a user logs out. It is used for cleanup tasks, ensuring that any temporary changes made during the session are reversed, or to log information about the user's session.
-It is user-specific, and each user can have their own in their home directory.
-
+- The .bash_logout file is the individual login shell cleanup file. It is executed when a login shell exits. 
+- The file ~/.bash_logout is read and executed every time a login shell exits. 
+  Thus, you can log out by typing the 'logout' command or by pressing CTRL+D keyboard shortcut keys
+- The primary purpose of the .bash_logout file is to define actions and commands that should be executed when a user logs out. 
+  It is used for cleanup tasks, ensuring that any temporary changes made during the session are reversed, or to log information about the user's session.
+- It is user-specific, and each user can have their own in their home directory.
 
 
 Firstly when the user logs in and if the .bash_profile file is available, it will be executed regardless of the existence of .bash_login or .profile file.
 If that file is not available, then firstly the .bash_login file will be executed, and if this file is also not available, then .profile file will be executed.
-Note that .bash_profile file is read and any commands in this file are executed when the user logs in, but this file is not read when the user starts a new shell. If the user starts a new shell, .bashrc file is read, for which you are quite aware of.
 
-The .bash_logout file is executed when the user logs out and its purpose is to create an environment for executing commands during the logout process. This could include killing processes, clearing files, copying files, or taking backups. 
+Note that .bash_profile file is read and any commands in this file are executed when the user logs in, but this file is not read when the user starts a new shell. 
+If the user starts a new shell, .bashrc file is read, for which you are quite aware of.
+
+The .bash_logout file is executed when the user logs out and its purpose is to create an environment for executing commands during the logout process. 
+This could include killing processes, clearing files, copying files, or taking backups. 
 For example, a user may want to backup the /etc directory every time they log out by adding the command "tar -cvjf /etc ~/path/to/destination" to the .bash_logout file.
 
 /etc/profile file is executed when a user logs in and then /etc/profile file executes /etc/bashrc file.
-so when you just logged in first time then /etc/profile is loaded/runned. and when you run any other shell like sometimes you type bash to open up bash shell then it will load bashrc file, in this case bash_profile file is not executed. bash_profile file is executed at once when user just logged in.
+so when you just logged in first time then /etc/profile is loaded/runned. and when you run any other shell like 
+sometimes you type bash to open up bash shell then it will load bashrc file, in this case bash_profile file is not executed
+. bash_profile file is executed at once when user just logged in.
 
 user specific bashrc file is located at .bashrc
 system wide bashrc file is located at /etc/bashrc
 
 /etc/inputrc:
-It is used to specify key bindings, keyboard shortcuts, and input behavior for command-line interfaces. It helps control how characters are interpreted and processed during text entry and editing in various applications, including the Bash shell, Readline, and some text editors.
-It is a system-wide configuration file, which means it applies to all users on the system. 
-Users can override system-wide settings by creating a ~/.inputrc file in their home directory. The user-specific configuration in ~/.inputrc takes precedence over the settings in /etc/inputrc.
+- It is used to specify key bindings, keyboard shortcuts, and input behavior for command-line interfaces. 
+  It helps control how characters are interpreted and processed during text entry and editing in various applications, including the Bash shell, Readline, and some text editors.
+- It is a system-wide configuration file, which means it applies to all users on the system. 
+- Users can override system-wide settings by creating a ~/.inputrc file in their home directory. 
+  The user-specific configuration in ~/.inputrc takes precedence over the settings in /etc/inputrc.
