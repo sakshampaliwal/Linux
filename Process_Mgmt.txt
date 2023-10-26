@@ -1,0 +1,173 @@
+Parent id is usually smaller than child id
+When booting starts then init or systemd process starts first, it has pid of 1.
+
+init:
+- Init is a abbreviation for Initialization. The init is a daemon process which starts as soon as the computer starts and continue running till, it is shutdown. 
+  In-fact init is the first process that starts when a computer boots, making it the parent of all other running processes directly or indirectly and 
+  hence typically it is assigned “pid=1“.
+- If somehow init daemon could not start, no process will be started and the system will reach a stage called “Kernel Panic“. 
+  init is most commonly referred to as System V init. 
+- SysV init is based on a simple, script-based approach. It uses a collection of shell scripts located in 
+  various directories (e.g., /etc/init.d/) to start and stop services. 
+  These scripts are typically named with numbers to define the order in which they are executed during the boot process.
+- While SysV init served well for a long time, it had limitations in terms of parallelization and dependency management. 
+  Boot times could be slow, and the system's behavior wasn't always predictable.
+
+systemd:
+- systemd is a system and service manager, first introduced in 2010 to replace the traditional System V init system. 
+  It was designed to improve boot-up speeds and manage system services more efficiently. 
+  Today, systemd is the default init system for many popular Linux distributions, including Ubuntu, Fedora, and Red Hat Enterprise Linux.
+- It itself is a background processes which is designed to start processes in parallel, thus reducing the boot time and computational overhead. 
+  It has a lot other features as compared to init.
+- systemd uses parallelization and other optimizations to speed up the boot process.
+- systemd sparked significant debate and controversy in the Linux community due to its comprehensive approach,
+  but it has become the default init system for many Linux distributions.
+
+daemon process:
+- Daemon processes are started working when the system will be bootstrapped and terminate only when the system is  shutdown.
+  It does not have a controlling terminal. It always runs in the background.
+- Daemon is called as a type of program which quietly runs in the background rather than under the direct control of a user
+
+zombie process:
+- A zombie process is a process whose execution is completed but it still has an entry in the process table. 
+- Zombie process is also known as "dead" process.
+- Analogy: Zombie, mythological, is a dead person revived physically. Similarly, a zombie process in os is a dead process 
+  (completed its execution) but is still revived (it's entry is present in memory).
+- This occurs for the child processes, where the entry is still needed to allow the parent process to read its 
+  child's exit status. Once the exit status is read via the wait system call, the zombie's entry is removed from 
+  the process table and said to be "reaped". A child process always first becomes a zombie before being removed from the resource table.
+- Processes that stay zombies for a long time are generally an error and cause a resource leak, but they only occupy the process table entry.
+
+Orphan process:
+- In the real world orphans are those children whose parents are dead.
+- Similarly, a process which is executing (is alive) but it's parent process has terminated (dead) is called an orphan process.
+- In the real world orphans are adopted by guardians who look after them.
+- Similarly,the orphan process in linux is adopted by a new process , which is mostly init process (pid=1) . This is called re-parenting.
+- Reparenting is done by the kernel,when the kernel detects an orphan process in os, and assigns a new parent process.
+
+
+> echo $$  //it will print the PID of the shell process from which you executed the command.
+> ps -C bash  // it lists all processes whose command name is "bash."
+> echo $PPID  //used to display the parent process ID (PPID) of the currently running process.
+> pidof bash  //used to display the process ID (PID) of a running process based on its name, you might see 3 numbers there which means current pid,parent pid, grand parent pid
+> echo $SHLVL  //used to display the shell level, which indicates the nesting level of the current shell session. Each time you open a new shell, 
+                 such as starting a terminal or running a script, the shell level is incremented.
+
+
+Forking in Process:
+- When a program in Linux wants to create a new process, it often starts by forking. 
+- The fork system call is used for this purpose. When a fork occurs, the operating system creates a new 
+  process by duplicating the existing (parent) process.
+- So like when we put command ksh on bash shell then the os fork the current process and it characteristics 
+  and then it will run ksh on it with diff process id.
+  This is forking.
+
+
+Exec: 
+- It is a system call that is used to replace the current running process with a new program. 
+- It loads a new program into the current process's memory space, effectively overwriting the existing code, data, and stack of the process. 
+- So when we run command > exec ksh // then it will run this ksh process but the pid remains same whereas in forking new pid will be created.
+
+
+> ps fx  //is used to display a hierarchical view of processes.Each process is shown in a tree-like structure, indicating its relationship 
+to parent and child processes. f here means full listing, x here instructs it to display all processes, including those that are not associated with a terminal.
+
+> ps fx | grep bash  // to filter out
+> ps -ef  //e option stands for "everyone" or "all"
+> pstree  // It shows the parent-child relationships between processes, making it easier to visualize how processes are related to one another.
+> pstree -p  //it will also show pid of processes.
+> pstree -p -u username  //u here means username, to list out proccesses running by that user.
+> jobs  //It will list all jobs on the system; active, stopped, or otherwise. 
+
+When you run a command in the background, you can use the & symbol at the end of the command to run it in the background. 
+For example: sleep 60 &
+
+
+Process States:
+D ➔ uninterruptible sleep (usually IO)
+R ➔ running or runnable (on run queue)
+S ➔ interruptible sleep (waiting for an event to complete)
+T ➔ stopped, either by a job control signal or because it is being traced
+W ➔ paging (not valid since the 2.6.xx kernel)
+X ➔ dead (should never be seen)
+Z ➔ defunct ("zombie") process, terminated but not reaped by its parent
+I ➔ idle state
+
+Kill command:
+Common use of the kill command is to terminate a process. You can specify a process ID (PID) and send the SIGTERM signal (signal number 15) 
+to ask the process to terminate gracefully. 
+
+> kill PID
+
+Common Signals used:
+
+Signal    Signal Name              Meaning
+--------------------------------------------------------------
+1         SIGHUP                   Hang Up - often used to restart processes
+2         SIGINT                   Interrupt - Ctrl+C to stop a process
+3         SIGQUIT                  Quit - similar to SIGINT, generates a core dump
+9         SIGKILL                  Forceful termination (immediate stop)
+10        SIGUSR1                  User-Defined Signal 1
+12        SIGUSR2                  User-Defined Signal 2
+15        SIGTERM                  Termination request for graceful exit
+18        SIGCONT                  Continue a paused process
+19        SIGSTOP                  Stop (pause) a process
+--------------------------------------------------------------
+
+Strace:
+It is a powerful diagnostic tool that allows you to trace the system calls and signals made by a process or a program. 
+> strace command_or_program
+in output you see: System calls (e.g., open, read, write, execve, etc.), Arguments and return values for each system call, 
+Error codes for failed system calls,Signal handling (e.g., kill, signal, etc.).
+
+top command:
+- It provides real-time information about the system's performance. It displays a dynamic and interactive view of system processes 
+  and resource utilization, making it a handy tool for monitoring system activity. 
+- Use the top command to send any signal to a running process. Press the k key and enter the process PID. 
+  top gives you a chance to type the signal you want to send. Not entering a specific signal kills the process.
+- By default top sorts in descending order, top sorts the process list using the %CPU column. To sort processes using a 
+  different column, press one of the following keys:
+
+Press Shift also because these are capitals.
+M. Sort by the %MEM column.
+N. Sort by PID column.
+T. Sort by the TIME+ column.
+P. Sort by the %CPU column.
+
+> top -u [user name]  //filter process by specific user
+- Press the z key to add color to the display.
+
+what it shows:
+up: it shows from how much time my system is up or running.
+users: it shows how many users are logged into system.
+load average: last 1 min load,last 5 min load,last 15 min load in the system
+cpu shows few keywords:
+us(User): percentage of CPU time consumed by user processes or tasks. User processes typically include applications and programs initiated by regular users.
+sy(System): percentage of CPU time consumed by the kernel or system processes. 
+ni(Nice): percentage of CPU time consumed by user processes with a manually adjusted "nice" value.
+id(idle): percentage of CPU time when the CPU is idle and not actively executing any processes. 
+wa(I/O wait): percentage of CPU time spent waiting for I/O operations to complete.
+hi(Hardware Interrupt): percentage of CPU time used to handle hardware interrupts.
+si(software interrupt): percentage of CPU time used for handling software interrupts. 
+st(steal time): percentage of CPU time "stolen" from a virtual machine by the hypervisor. 
+
+Priority Value:
+The priority value is the process’s actual priority which is used by the Linux kernel to schedule a task. 
+In Linux system priorities are 0 to 139 in which 0 to 99 for real-time and 100 to 139 for users.
+
+Nice Value:
+Nice values are user-space values that we can use to control the priority of a process. The nice value range is -20 to +19 where -20 is highest, 
+0 default and +19 is lowest.
+Negative Nice value is set by root user.
+Relation between nice value and priority is as such: Priority_value = Nice_value + 20
+
+In Linux, the nice & renice commands are used to change the priority of a process, which, in effect, determines the urgency with which it is executed in the system.
+The nice command is used to start a process with a specified priority level. The nice command configures the priority of a Linux process before it is started
+>nice -n -10 command  //start a process with a priority level of -10
+
+The renice command is used to change the priority level of an existing process.
+renice <nice_value> -p <process_id>
+> renice -n -5 -p 1234  //to increase the priority level of a process with PID 1234 to -5
+
+Change priority of a Specific Group or user: renice <nice_value> -g <group_id> -u <user_id>
+
