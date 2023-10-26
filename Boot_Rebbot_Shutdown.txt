@@ -1,0 +1,18 @@
+sudo systemctl reboot
+sudo systemctl poweroff
+sudo systemctl 
+
+if you logged in as root then you don’t need to type sudo
+
+in some cases some program may not allow you to shutdown or reboot then in this case use this:
+sudo systemctl reboot --force
+sudo systemctl poweroff --force
+
+if it still doesn’t work then use --force twice like this: sudo systemctl poweroff --force --force
+
+
+to shutdown at particular time use this: sudo shutdown 02:00 //it uses 24 hour format
+shutdown +15 --> it will shutdown after 15 min
+shutdown -r 2:00 --> it will reboot at 2AM
+shutdown -r 2:00 'This is wall message that will be displayed'--> it will reboot at 2AM
+
