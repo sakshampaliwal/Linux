@@ -1,0 +1,63 @@
+Find command:
+find [path] [expression]
+[path]: Specifies the starting directory for the search. If you don't specify a path, find will start the search from the current directory.
+
+File by name: find . -name "example.txt"
+File of Specific type: find /path/to/directory -type f -name "*.pdf"
+Files modified within a specific time range: find /path/to/directory -type f -mtime -7   //last 7 displays
+search for all files that end in .conf: find /usr -type f -name "*.conf"
+
+to specify the type of file:
+f: regular file
+d: directory
+l: symbolic link
+c: character devices
+b: block devices
+
+size suffixes:
+
+c: bytes
+k: kilobytes
+M: megabytes
+G: gigabytes
+b: 512-byte blocks
+
+e.g: find /usr -size 50c
+
+
+find -mmin 5 --> it lists files that modified exactly 5 min before
+find -mmin -5 --> it lists files that modifies in last 5min
+find -mmin +5 --> it lists files that modified before 5min to infinity
+find -size 512k--> it lists files exactly 512 kilobytes
+find -size -512k--> it lists files less than
+find -size +512k--> it lists files more than
+find -name "f*" --> we can find files start with letter f by wildcard format
+find -name "f*" -size 512k --> it means and operator
+find -name "f*" -o -size 512k --> it means or operator
+find -not -name "f*" --> file that do not start with letter f
+find -perm 664 --> files with exactly 664 permissions
+find -perm -664 --> files with at least 664 permissions, which means at least these but if it has more permissions then it will be okay
+find -perm /664 --> files with any of these 664 permissions
+
+modification means creation or editing of file
+
+modify time!=change time
+change time --> it means the time when the meta data is changed
+
+
+Locate Command:
+This command is often quicker and can search the entire file system with ease.
+find Searches the file system in real-time, which means it looks for files and directories by scanning your computer's storage at the moment you run the command.
+whereas locate Uses a pre-built list (database) of files and their locations on your computer.
+Searches this pre-built database, which makes it much faster.
+
+Syntax: locate query
+
+The locate command relies on a pre-built database of files, which is typically updated regularly by a background process (such as updatedb). 
+However, if you want to ensure that the database is up to date before running a search, you can use the "sudo updatedb" command to manually update it:
+
+By default, locate searches the entire file system. If you want to limit the search to a specific directory or path, you can specify it as an argument: 
+locate -r /path/to/search/in
+
+Count no of matches: locate -c example.txt
+Limit Results to a Maximum Number: locate -n 5 example.txt
