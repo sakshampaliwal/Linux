@@ -1,0 +1,122 @@
+Conditionals:
+
+#!/bin/bash
+m=1
+n=2
+
+if [ $n -eq $m ]
+then
+        echo "Both variables are the same"
+else
+        echo "Both variables are different"
+fi
+
+Conditional Expressions with && and ||
+
+Remember that every command in our shell is an expression that returns an integer value as a status. Returning 0 is a standard way to indicate success and 1 to indicate failure. 
+&& (Logical AND):
+
+Syntax: command1 && command2
+Meaning: Execute command1, and if it succeeds (returns a zero exit status), then execute command2.
+echo "This is executed first" && echo "This is executed only if the first command succeeds"
+
+|| (Logical OR):
+
+Syntax: command1 || command2
+Meaning: Execute command1, and if it fails (returns a non-zero exit status), then execute command2.
+
+e.g: 
+grep -q "this string doesn't exist" some_file \
+&& { echo "Everything"; echo "is all right"; } \
+|| { echo "Not"; echo "today"; }
+
+If it’s 0 (if the string is in the file), then the list of commands right of the && token will execute
+If the exit status is not 0 (if the string is not in the file), then what’s on the right of the token && will not execute; instead, the instructions to the right of the token || will be executed
+
+In Bash scripting, double square brackets [[ ... ]] are used for conditional tests and comparisons.
+if [[ $name == "Neha" || $name == 'Nil' ]]; then
+
+ the then keyword is used in conjunction with the if statement to specify the block of code that should be executed if the condition specified in the if statement is true.
+
+#!/bin/bash
+
+# Get the user's age
+read -p "Enter your age: " age
+
+if [ $age -lt 18 ]; then
+    echo "You are a minor."
+elif [ $age -ge 18 -a $age -lt 65 ]; then
+    echo "You are an adult."
+else
+    echo "You are a senior citizen."
+fi
+
+---
+Case Statement:
+#!/bin/bash
+
+# Prompt the user for their favorite fruit
+read -p "Enter your favorite fruit (apple, banana, or cherry): " fruit
+
+# Use a case statement to process the input
+case $fruit in
+    "apple")
+        echo "You chose apple. Apples are red or green."
+        ;;
+    "banana")
+        echo "You chose banana. Bananas are yellow and curved."
+        ;;
+    "cherry")
+        echo "You chose cherry. Cherries are small and red."
+        ;;
+    *)
+        echo "Invalid choice. Please select apple, banana, or cherry."
+        ;;
+esac
+
+*-> it is a wildcard case, which is executed as a default action.
+
+another eg:
+#!/bin/bash
+
+# Prompt the user for a number
+read -p "Enter a number between 1 and 10: " number
+
+# Use a case statement to process the input
+case $number in
+    1|2|3)
+        echo "The number is between 1 and 3."
+        ;;
+    4|5|6|7|8|9)
+        echo "The number is between 4 and 9."
+        ;;
+    10)
+        echo "The number is 10."
+        ;;
+    *)
+        echo "Invalid input. Please enter a number between 1 and 10."
+        ;;
+esac
+
+another eg:
+#!/bin/bash
+
+# Prompt the user for a number
+read -p "Enter a number: " number
+
+# Use a case statement to process the input
+case $number in
+    [1-5])  # Matches numbers 1 through 5
+        echo "The number is between 1 and 5."
+        ;;
+    [6-9])  # Matches numbers 6 through 9
+        echo "The number is between 6 and 9."
+        ;;
+    10)     # Matches the number 10
+        echo "The number is 10."
+        ;;
+    *)
+        echo "Invalid input. Please enter a number between 1 and 10."
+        ;;
+esac
+
