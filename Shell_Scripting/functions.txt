@@ -1,0 +1,73 @@
+Functions must be declared before calling it
+
+Using Functions Keyboard:
+function my_function() {
+    # Function code here
+}
+
+without function Keyboard
+my_function() {
+    # Function code here
+}
+
+Function with Parameters:
+In shell scripting, $1, $2,$3 and so on are special variables that represent the arguments passed to a function or script. They are known as positional parameters.
+$1: Represents the first argument passed to the function or script.
+$2: Represents the second argument.
+$3: Represents the third argument.
+
+my_function arg1 arg2 arg3  //Passing arguments to a function
+
+add() {
+    local num1="$1"
+    local num2="$2"
+    echo "$((num1 + num2))"
+}
+calling: add 5 3
+
+function with default parameters:
+create_user() {
+    local username="${1:-defaultuser}"
+    local password="${2:-password123}"
+    local home_directory="${3:-/home/$username}"
+    
+    echo "Creating user: $username"
+    echo "Password: $password"
+    echo "Home directory: $home_directory"
+}
+calling: create_user "alice" "pass987"
+calling: create_user "" "" "/custom/home/alice"
+
+$0 variable represents the name of the currently executing script or shell.
+E.g: 
+echo "The name of this script is: $0"
+show_function_name() {
+    echo "The name of the function is: $0"
+}
+show_function_name
+
+Output: The name of this script is: ./example.sh
+The name of the function is: ./example.sh
+
+
+$# variable represents the number of arguments (parameters) passed to a script or function. 
+if [ $# -eq 0 ]; then
+    echo "No arguments provided."
+elif [ $# -eq 1 ]; then
+    echo "One argument provided: $1"
+else
+    echo "Number of arguments provided: $#"
+    echo "Arguments provided: $@"
+fi
+
+when you run this way: ./script.sh  // It will give: No arguments provided.
+when you run with one argument: ./script.sh argument1 //It will give: One argument provided: argument1
+when you run with multiple arguments: ./script.sh arg1 arg2 arg3 //It will give Number of arguments provided: 3
+Arguments provided: arg1 arg2 arg3
+
+
+$@ variable represents all of the command-line arguments passed to a script or function as individual words, preserving the quoting and spacing of each argument.
+$*: Represents all the arguments as a single string,
+
+so if you uyse $@ then if you pass "abc def ghi" as argument then it will treat it a single argument
+but if you use $* then if you pass "abc def ghi" as argument then it will treat abc , def, ghi as separate arguments.
