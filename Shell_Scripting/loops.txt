@@ -1,0 +1,137 @@
+For Loop:
+
+for item in item1 item2 item3
+do
+    # Code to execute for each item
+done
+
+for ((i=1; i<=5; i++))
+do
+    # Code to execute for each value of i (1 through 5)
+done
+
+Iterating over a Range of Numbers:
+for i in {1..5}
+do
+    echo "Number: $i"
+done
+
+Iterating over an Array:
+fruits=("apple" "banana" "cherry" "date")
+
+for fruit in "${fruits[@]}"
+do
+    echo "Fruit: $fruit"
+done
+
+Iterating over Files in a Directory:
+for file in /path/to/directory/*
+do
+    echo "File: $file"
+done
+
+Iterating through Command Output:
+for item in $(ls /path/to/directory)
+do
+    echo "Item: $item"
+done
+
+Iterating through Command Output with find:
+for file in $(find /path/to/directory -type f -name "*.txt")
+do
+    echo "Text File: $file"
+done
+
+
+While Loop:
+
+count=1
+while [ $count -le 5 ]
+do
+    echo "Count: $count"
+    count=$((count + 1))
+done
+
+Reading Lines from a File:
+while IFS= read -r line
+do
+    echo "Line: $line"
+done < input.txt
+
+Infinite Loop with User Input:
+while :
+do
+    read -p "Enter a name (or 'exit' to quit): " name
+    if [ "$name" == "exit" ]
+    then
+        break
+    fi
+    echo "Hello, $name!"
+done
+
+Iterating through a List:
+names=("Alice" "Bob" "Charlie" "David")
+index=0
+while [ $index -lt ${#names[@]} ]
+do
+    echo "Name: ${names[index]}"
+    index=$((index + 1))
+done
+
+Conditional Looping:
+while true
+do
+    # Some condition check
+    if [ some_condition_is_true ]
+    then
+        break
+    fi
+    # Other commands
+done
+
+
+Until Loop:
+
+count=1
+until [ $count -gt 5 ]
+do
+    echo "Count: $count"
+    count=$((count + 1))
+done
+
+Reading Lines from a File with until:
+until ! IFS= read -r line
+do
+    echo "Line: $line"
+done < input.txt
+
+Infinite Loop with User Input using until:
+until [ "$name" == "exit" ]
+do
+    read -p "Enter a name (or 'exit' to quit): " name
+    echo "Hello, $name!"
+done
+
+Iterating through a List with until:
+names=("Alice" "Bob" "Charlie" "David")
+index=0
+until [ $index -ge ${#names[@]} ]
+do
+    echo "Name: ${names[index]}"
+    index=$((index + 1))
+done
+
+${#names[@]}:  is essentially asking the shell to calculate the length of the names array, which will return the number of elements in that array. In your example, it's used to determine the length of the names array before looping through its elements.
+
+
+To Find length in Shell Scripts:
+
+For Strings:
+my_string="Hello, World!"
+length=${#my_string}
+echo "Length of the string: $length"
+
+For Arrays:
+fruits=("apple" "banana" "cherry" "date")
+array_length=${#fruits[@]}
+echo "Number of elements in the array: $array_length"
