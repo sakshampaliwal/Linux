@@ -1,0 +1,35 @@
+Sudoers file:
+- It is a configuration file that defines who can run specific commands with elevated privileges using the sudo command. 
+  It allows system administrators to delegate limited superuser powers to regular users or groups of users while maintaining control over system security.
+- It is typically located at /etc/sudoers
+- It is the file of rules, regulations, and action list for the “sudo”. It tells the “sudo” to which user to give the 
+  root privileges and allow them to have a super user permission and which user to deny an access to the root privileges. 
+  It can also enable a certain user to execute a command as any other user in the system. 
+- you need to get the administrator rights to open the sudoer file.
+- When you install os it automatically adds the first user to the sudoer file with administrative rights. 
+  The first user can run the commands like install, update, etc with the “sudo” command after the installation is done. 
+  But, when a new user is added by default, no administrative rights are assigned to it. To give the administrative rights or the super user access 
+  to the new user, the sudoer file needs to be edited and the new user needs to be added to the sudoer file.
+- Use visudo in the terminal to edit sudoer files and avoid using a text editor to prevent corrupting other files and accidentally removing admin access.
+
+Syntax:
+
+For Individual user:
+alice    ALL=(ALL:ALL)   ALL
+//when you want to grant sudo privileges to a specific individual user, you do not use the % symbol. 
+
+For Groups:
+%admins  ALL=(ALL:ALL)   ALL
+//When you want to grant sudo privileges to a group of users, you use the % symbol before the group name
+
+Combinig user and group:
+alice, %admins    ALL=(ALL:ALL)   /bin/ls, /bin/cat
+
+
+E.g:
+alice    ALL=(ALL:ALL)   ALL
+%admins  ALL=(ALL:ALL)   ALL
+alice    ALL=(ALL:ALL)   ALL, !/usr/bin/passwd   //we are saying that all command can be allowed to execute but denied permission to run the /usr/bin/passwd command with sudo
+alice    ALL=(ALL:ALL)   /bin/ls, /bin/cat   // Alice can run /bin/ls and /bin/cat with elevated privileges using sudo.
+
+
