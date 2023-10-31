@@ -1,0 +1,29 @@
+sshd_config file:
+- The OpenSSH server reads a configuration file when it is started. Usually, this file is /etc/ssh/sshd_config, but the location can be changed using the -f command line option when starting sshd.
+- Some organizations run multiple SSH servers at different port numbers, specifying a different configuration file for each server using this option.
+- The default values for certain configuration options in OpenSSH are quite restrictive and often need to be changed. Usually this is done by editing the default configuration file to change just a few options.
+- It tells the server how to behave and who can connect to it.
+- You can allow or deny specific users or groups from connecting to the server.
+- You can set security measures, like disallowing root login or requiring key-based authentication.
+- The sshd_config file is an ASCII text based file. Each line that starts with '#' is interpreted as a comment.
+
+Content inside this file:
+
+Port: Specifies the network port where the server listens for incoming SSH connections.
+PermitRootLogin: Controls whether the root user is allowed to log in via SSH.
+PasswordAuthentication: Enables or disables password-based login.
+AllowUsers/DenyUsers: Lists users who are allowed or denied SSH access.
+PubkeyAuthentication: Controls public key authentication.
+UsePAM: Determines whether Pluggable Authentication Module (PAM) is used for authentication.
+TCPKeepAlive: Decides whether the server sends keep-alive messages.
+Banner: Allows you to display a message when users connect.
+HostKey: Specifies the server's encryption keys.
+MaxAuthTries: Sets the maximum login attempts allowed.
+LoginGraceTime: Defines the time for users to complete login after connecting.
+PermitUserEnvironment: Controls whether users can set their own environment variables.
+
+open sshd_config file in vi editor.
+
+Allow users:  AllowUsers username1 username2
+Deny users: DenyUsers username3 username4
+restart ssh service now: sudo systemctl restart ssh
