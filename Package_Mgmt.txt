@@ -1,0 +1,68 @@
+Some terms:
+
+In the past, Linux users had to download the source code, compile it into binary files, and then add it to their system as software. Occasionally, users could find the software already compiled and packaged as a tarball. A tarball is a compressed file that contains multiple files, such as executables, configuration files, documentation, and libraries, making it convenient for storage and distribution.
+After software installation, the files spread across the system in relevant directories. However, the method of creating tarball may seem easy, but the installation process makes some tasks difficult.
+It requires the user to independently/manually track down the dependencies for the installing software such that the dependent software itself has some dependencies.
+Since tarball package installation spreads the files, it won’t be easy to locate the package documentation and configuration files even if the user knows the commands.
+It’s hard to locate files to uninstall software.
+To overcome these problems, software packaging in the Linux distributions evolved into two packaging formats known as DEB and RPM packaging.
+
+
+1. Packages: 
+   A package contains all the necessary data required for the installation and maintenance of the software package. These packages are created by someone known as a package maintainer.
+
+2. Dependencies:   
+   Some packages might require some other pre-installed software to function correctly. A resource or software that a package depends on is called its dependency.
+   The package manager takes care of all these problems for you. It will install, modify, upgrade, update, and remove package files and provide dependency resolution. 
+
+3. Package Manager:
+   It is a software tool used for package management in Linux i.e. to manage the installation, removal, and updating of various software packages. It can be thought of as a hub for all software packages available for your system. The package manager keeps track of all the installed packages on the system, including their dependencies, and uses this information to resolve conflicts and handle updates.
+
+Package Manager vs Installers:
+1. An installer is a software tool used to install a specific piece of software on a Linux system.
+   whereas Package managers are used to install, update, and remove software packages, as well as manage dependencies and repositories.
+2. Package managers can update multiple packages at once, and can handle dependencies and conflicts automatically 
+   whereas Installers may require manual updates or may not support updates at all, which can lead to security vulnerabilities.
+
+
+
+Debian Based Distro(Linux Mint, Ubuntu, Kali Linux, Parrot OS)
+Fedora Based Distro(CentOS, RHEL)
+
+Debian Based Package Managers: 
+
+1. APT(Advanced Package Tool):  It acts as a front-end to the lower-level dpkg package manager, which is used for installing, managing, and providing information on .deb packages.
+   Commands:
+   Fetch Updates: > sudo apt update
+   To upgrade all packages: sudo apt upgrade
+   To list all packages: apt list
+   To see list of all upgradable packages: apt list --upgradable
+   Install New Package: sudo apt install {pkgNameHere}
+   Remove Package: sudo apt remove {pkgNameHere}
+   Remove package with config files: sudo apt purge {pkgNameHere}  //Removing a package removes all packaged data, but leaves usually small (modified) user configuration files behind.
+   Remove packages installed automatically: sudo apt autoremove  //automatically installed to satisfy dependencies for other packages and are now no longer needed.
+   Search Packages: apt search php
+
+2. dpkg: dpkg is a low-level package manager used in Debian-based Linux distributions to manage individual software packages. It stands for "Debian Package." dpkg is a command-line tool that works directly with the Debian package format (.deb)
+    Debian-based systems use .deb files as the package format. These files contain binary and configuration data for the software.
+
+
+Fedora Based Package Manager:
+
+1. rpm:
+   -RPM stands for "Red Hat Package Manager."
+   -The name, RPM, was derived from the .rpm file format. The manager was designed to be used for Linux distributions. Initially, it was made to be used in Red Hat Linux. Now, it’s widely used in other Linux distributions including Fedora, CentOS, OpenSUSE, OpenMandriva, and Oracle Linux. Most RPM files are binary with the compiled version of the software.
+   -When you remove a package using RPM, you can get rid of it cleanly with almost no remaining trace. When you uninstall, it automatically checks dependencies and removes the package safely.
+   -Only root or users with sudo privileges can install or remove RPM packages.
+   -The main downside is that it doesn't resolve package dependencies or automatic package updates.
+
+2. yum:
+   -Yum stands for Yellowdog Updater Modified.
+   -It is an open-source Linux package management application that uses the RPM package manager
+   -YUM's benefits over RPM are automatic updates, easy package management and dependency management.
+   -YUM is a much better option than RPM when performing a batch installation. Since YUM utilizes online repositories, it only requires the package names. 
+   -The downside of YUM is that it does not allow to install multiple package versions. Also, it only supports packages available in the repository.
+    RPM allows to install multiple packages and versions, but it requires the full file name with the .rpm extension. Still, it does not solve the dependencies for the installed packages.
+   -Installing a package with YUM only requires the package name, and doesn't require the package location. The tool searches the repositories listed in the repo files from the /etc/yum.repos.d/ directory and installs the latest package version available.
+    RPM doesn't support repositories, installing a package requires the full package file name and location. 
+   -
