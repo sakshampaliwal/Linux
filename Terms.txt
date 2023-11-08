@@ -1,0 +1,38 @@
+Console: It is just a screen where your operating system displays some text and where it allows you to type commands.
+Terminal Emulator: It is graphical app that runs in windows and does similar thing and displays output and allows you to type commands.
+
+Local: Just a tech word that for something in front of you or something that you can physically access.
+
+Every linux system uses same tool that allows you to login which is OpenSSH Daemon. It is a program that
+run on server every time. Before SSH, Telnet was used to connect. Telnet was highly insecure and doesn't encrypt the communication during telnet session.
+
+ip a -> command to see ip address.
+
+Mac and linux based os already have an ssh client pre-installed. Previously windows users have to install putty to ssh into the remote machine
+but after windows 10 there is no need to do so. you can directly ssh into the machine with cmd.
+
+Double time tab press gives you all posibilities to auto complete it.
+use man and --help to figure out commands.
+
+apropos command: The apropos command in Linux is used to search for commands and their corresponding descriptions based on keywords. 
+The apropos command searches through the man pages (manual pages) on your system to find matches for the specified keywords. 
+if you get error like:"nothing appropriate
+then run this command: sudo mandb
+e.g: apropos hostname
+
+ssh -v option: (verbose) It is used to increase the level of detail in the output when establishing an SSH connection. When you use the -v option, 
+SSH provides more information about the connection process, making it useful for troubleshooting and debugging connection issues. 
+e.g: ssh -v user@hostname
+
+
+
+
+
+Linux Terminologies:
+
+Kernel:
+  Application-->Shell-->Kernel-->Hardware
+  The kernel is a computer program at the core of an operating system (OS). It is the part of the OS that loads first and remains in the main memory. 
+  The kernel connects the system hardware to the application software.
+  The kernel connects the system hardware to the application software, and every operating system has a kernel.
+
