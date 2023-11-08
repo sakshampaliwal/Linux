@@ -65,4 +65,4 @@ Fedora Based Package Manager:
     RPM allows to install multiple packages and versions, but it requires the full file name with the .rpm extension. Still, it does not solve the dependencies for the installed packages.
    -Installing a package with YUM only requires the package name, and doesn't require the package location. The tool searches the repositories listed in the repo files from the /etc/yum.repos.d/ directory and installs the latest package version available.
     RPM doesn't support repositories, installing a package requires the full package file name and location. 
-   -
+   
