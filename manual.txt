@@ -1,0 +1,6 @@
+to see manual use: man command
+to see heading of man page of command: whatis command_name
+if this shows "Nothing appropriate" then use mandb command to update the manuals.
+to see the location of command in binary use this: whereis command_name //this will show location of command in bin and also the location of this command manual page.
+to see particular section of the manual then: man 5 cd  //it will show 5th section of manual of cd command
+to see the options on command use this: command_name --help
