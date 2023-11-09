@@ -1,0 +1,31 @@
+Network Interface:
+-It is a software or hardware component that allows a computer to connect to a network. Network interfaces are essential for communication between your computer and other devices or computers on a network, including the internet.
+-These interfaces are typically represented as network devices and are managed by the operating system. 
+-It is how the Linux system links up the software side of networking to the hardware side.
+-Two types of network interfaces
+    1.Physical Interface
+    2.Virtual Interface
+
+Physical Interface:
+-These are hardware components such as network interface cards (NICs) or built-in network adapters on your computer. 
+-These interfaces allow your computer to physically connect to a network via Ethernet cables or other physical connections.
+- E.g: eth0, eth1, enp0s3
+
+Virtual Interface:
+-These are software-based and are used for various networking purposes, including virtualization, network routing, and bridging. 
+-E.g:  tun0 (used for VPNs), br0 (used for network bridging), and vethX (used for container networking).
+
+Loopback Interface:
+-It is usually represented as "lo," is a special virtual network interface that allows your computer to communicate with itself. It's often used for local testing and troubleshooting.
+-The only purpose of the loopback interface is to return the packets sent to it, i.e. whatever you send to it is received on the interface. 
+
+
+
+ifconfig command(interface configuration):
+-It is used to configure and view the status of the network interfaces in Linux operating systems. With ifconfig, you can assign IP addresses, enable or disable interfaces, manage ARP cache, routes, and more.
+-ifconfig is still available on many Linux systems, it's considered legacy, and it's recommended to use the ip command for more advanced and modern network configuration tasks.
+-> ifconfig  //This will show a list of all the active network interfaces along with their associated IP addresses, MAC addresses, and other network-related information.
+-if you want to see specific network interfaces then specify the interface's name as an argument. 
+ e.g: ifconfig eth0
+->sudo ifconfig eth0 up  //To enable or disable a network interface, you can use the up and down options.
+
