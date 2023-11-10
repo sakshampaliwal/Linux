@@ -19,8 +19,6 @@ Loopback Interface:
 -It is usually represented as "lo," is a special virtual network interface that allows your computer to communicate with itself. It's often used for local testing and troubleshooting.
 -The only purpose of the loopback interface is to return the packets sent to it, i.e. whatever you send to it is received on the interface. 
 
-
-
 ifconfig command(interface configuration):
 -It is used to configure and view the status of the network interfaces in Linux operating systems. With ifconfig, you can assign IP addresses, enable or disable interfaces, manage ARP cache, routes, and more.
 -ifconfig is still available on many Linux systems, it's considered legacy, and it's recommended to use the ip command for more advanced and modern network configuration tasks.
