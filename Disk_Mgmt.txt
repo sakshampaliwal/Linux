@@ -1,0 +1,7 @@
+lsblk command:
+'lsblk' stands for 'list block devices', it is used to list out all block devices in a tree-like format. 
+lsblk [options] [device...]
+
+dmesg command:
+-It  displays kernel-related messages retrieved from the kernel ring buffer. The ring buffer stores information about hardware, device driver initialization, and messages from kernel modules that take place during system startup.
+-dmesg command without any options will print entire kernel buffer,  For easier navigation and better readability, pipe the dmesg output into a terminal pager such as less, more, or use grep.
