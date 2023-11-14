@@ -1,0 +1,13 @@
+NTP(Network Time Protocol):
+- It is a protocol used to synchronize the time on computer systems within a network. 
+  It is commonly used in Linux and other operating systems to ensure that the system's clock is accurate and consistent. 
+- The NTP has multiple servers that operate hierarchically.
+- The primary time servers known as stratum 1 servers obtain accurate time from highly precise sources, such as atomic clocks or GPS receivers.
+- The Stratum 2 servers synchronize their time with Stratum 1 servers, and the hierarchy continues down to lower stratum levels.
+
+Verify NTP Status: sudo systemctl status ntp
+
+The timedatectl command provides information about the system's date, time, and time zone settings. It also indicates whether NTP synchronization is enabled or disabled.
+timedatectl status
+
+The /etc/ntp.conf file is the main configuration file for NTP on Linux. It contains directives for server addresses, access restrictions, logging, and more.
