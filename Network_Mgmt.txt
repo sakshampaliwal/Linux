@@ -27,3 +27,23 @@ ifconfig command(interface configuration):
  e.g: ifconfig eth0
 ->sudo ifconfig eth0 up  //To enable or disable a network interface, you can use the up and down options.
 
+nmcli command:
+-It is used for controlling NetworkManager and reporting network status. 
+-It can be used to control NetworkManager directly, without GUI, including creating, editing, starting and stopping network connections and viewing network status.
+-> nmcli dev status  //showing device status
+-> nmcli con show or nmcli c s //display information about network connections 
+-> nmcli con add type ethernet con-name anyname ifname ens224  //create a new network connection in NetworkManager 
+
+eth0: eth stands for Ethernet, and 0 indicates the first Ethernet interface. On a Linux system, physical Ethernet interfaces are often named eth0, eth1, and so on.
+lo:  It represents the loopback interface. The loopback interface is a special virtual network interface that allows a computer to communicate with itself.
+
+> ifdown ens224  //used to deactivate a network interface 
+> nmcli connection down ens224  //used to deactivate network connection
+> nmcli connection up ens224  //used to activate network connection
+> nmcli con reload  //to reload all connections
+> systemctl restart NetworkManager  //to restart network manager
+
+nmtui command:
+-It provides a simple and interactive way to manage network connections using a text-based interface. 
+-When starting nmtui, the user is prompted to choose the activity to perform unless it was specified as the first argument.
+
