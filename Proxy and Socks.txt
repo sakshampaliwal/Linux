@@ -3,7 +3,7 @@ Proxy:
 - It acts as a gateway between a client (such as a web browser) and a destination server. Instead of directly connecting to the destination server, the client sends its requests to the proxy, and the proxy forwards those requests on behalf of the client.
 - Requests are first sent to the proxy server, which handles the request along with the additional tasks of filtering content, scanning for malware, masking the origin of the request, encrypting messages, and more.
 - At a minimum, a proxy would shield an enterprise’s internal infrastructure from known threats found on the external web.
-- Proxy servers can cache (save a copy of the website locally) popular websites – so when you ask for www.varonis.com, the proxy server will check to see if it has the most recent copy of the site, and then send you the saved copy. What this means is that when hundreds of people hit 
+- Proxy servers can cache (save a copy of the website locally) popular websites – so when you ask for www.facebook.com, the proxy server will check to see if it has the most recent copy of the site, and then send you the saved copy. What this means is that when hundreds of people hit 
   www.facebook.com at the same time from the same proxy server, the proxy server only sends one request to facebook.com. 
   This saves bandwidth for the company and improves the network performance.
 - Organizations and parents set up proxy servers to control and monitor how their employees or kids use the internet. Most organizations don’t want you looking at specific websites on company time, and they can configure the proxy server to deny access to specific sites,
@@ -29,3 +29,12 @@ Types of Proxy:
    An anonymous proxy (also called a distorting proxy) conceals a user's real IP address when they visit a website. The proxy server ‘distorts' its own IP address by changing its geolocation to the web server
    TOR (The Onion Router) is a free, open-source web browser that routes users' internet traffic through a network of volunteer servers to provide anonymity.
 
+SOCKS:
+- SOCKS (Socket Secure) is an internet protocol that facilitates communication between a client and a server through a proxy server.
+- A network configuration (SOCKS protocol) facilitates communications between servers through a firewall. It routes network traffic or data packets (messages) on behalf of a client. 
+- When you’re using a SOCKS proxy, your IP address is hidden from the internet during data exchange. The IP address that your data is wearing is from the SOCKS proxy. Your personal information is invisible to targeted web pages. 
+- SOCKS proxy uses a total Transmission Control Protocol (TCP) connection with verification. The protocol also applies Secure Shell (SSH) encrypted tunnel for data transfer. 
+- 
+
+HTTP Proxy:
+- 
