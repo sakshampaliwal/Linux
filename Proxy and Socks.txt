@@ -1,14 +1,23 @@
 Proxy:
-- A Proxy or Proxy Server is an intermediary server, either software or hardware, the sits between an end user and a website or other service’s server.
-- It acts as a gateway between a client (such as a web browser) and a destination server. Instead of directly connecting to the destination server, the client sends its requests to the proxy, and the proxy forwards those requests on behalf of the client.
-- Requests are first sent to the proxy server, which handles the request along with the additional tasks of filtering content, scanning for malware, masking the origin of the request, encrypting messages, and more.
+- A Proxy or Proxy Server is an intermediary server, either software or hardware, the sits between an end 
+  user and a website or other service’s server.
+- It acts as a gateway between a client (such as a web browser) and a destination server. 
+  Instead of directly connecting to the destination server, the client sends its requests to the proxy, 
+  and the proxy forwards those requests on behalf of the client.
+- Requests are first sent to the proxy server, which handles the request along with the 
+  additional tasks of filtering content, scanning for malware, masking the origin of the request, encrypting messages, and more.
 - At a minimum, a proxy would shield an enterprise’s internal infrastructure from known threats found on the external web.
-- Proxy servers can cache (save a copy of the website locally) popular websites – so when you ask for www.facebook.com, the proxy server will check to see if it has the most recent copy of the site, and then send you the saved copy. What this means is that when hundreds of people hit 
+- Proxy servers can cache (save a copy of the website locally) popular websites – so when you ask for www.facebook.com, 
+  the proxy server will check to see if it has the most recent copy of the site, and then send you the saved copy. 
+  What this means is that when hundreds of people hit 
   www.facebook.com at the same time from the same proxy server, the proxy server only sends one request to facebook.com. 
   This saves bandwidth for the company and improves the network performance.
-- Organizations and parents set up proxy servers to control and monitor how their employees or kids use the internet. Most organizations don’t want you looking at specific websites on company time, and they can configure the proxy server to deny access to specific sites,
+- Organizations and parents set up proxy servers to control and monitor how their employees or kids use the internet. 
+  Most organizations don’t want you looking at specific websites on company time, and they can configure the proxy server to deny access to specific sites,
+
 - Is VPN a proxy?
-  Virtual Private Networks (VPN) are a particular implementation of a proxy server. While a standalone proxy handles network traffic, a VPN goes beyond that by additionally encrypting the transmitted data. 
+  Virtual Private Networks (VPN) are a particular implementation of a proxy server. While a standalone proxy handles network traffic, 
+  a VPN goes beyond that by additionally encrypting the transmitted data. 
 
 Types of Proxy:
 
