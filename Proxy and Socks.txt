@@ -34,7 +34,6 @@ SOCKS:
 - A network configuration (SOCKS protocol) facilitates communications between servers through a firewall. It routes network traffic or data packets (messages) on behalf of a client. 
 - When you’re using a SOCKS proxy, your IP address is hidden from the internet during data exchange. The IP address that your data is wearing is from the SOCKS proxy. Your personal information is invisible to targeted web pages. 
 - SOCKS proxy uses a total Transmission Control Protocol (TCP) connection with verification. The protocol also applies Secure Shell (SSH) encrypted tunnel for data transfer. 
-- 
+
 
 HTTP Proxy:
-- 
