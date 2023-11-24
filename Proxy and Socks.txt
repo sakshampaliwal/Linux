@@ -26,23 +26,29 @@ Types of Proxy:
    It is often used to control access to the internet, provide anonymity, or cache content to improve performance.
    
 2. Reverse Proxy:
-   Unlike a forward proxy, a reverse proxy sits between the client and one or more servers. It forwards client requests to the appropriate server and then returns the server's response to the client.
+   Unlike a forward proxy, a reverse proxy sits between the client and one or more servers. It forwards client requests to the appropriate server and 
+   then returns the server's response to the client.
    Reverse proxies are configured to restrict and monitor users' access to web servers containing sensitive data.
    Often used for load balancing, indirect server access, and content streaming.
 
 3. Transparent Proxy:
    Clients are unaware that their communication is being handled by a proxy, making the proxy "transparent" to them.
-   Transparent proxies are well-suited for companies that want to make use of a proxy without making employees aware they are using one. It carries the advantage of providing a seamless user experience. 
+   Transparent proxies are well-suited for companies that want to make use of a proxy without making employees aware they are using one. 
+   It carries the advantage of providing a seamless user experience. 
 
 4. Anonymous Proxy:
-   An anonymous proxy (also called a distorting proxy) conceals a user's real IP address when they visit a website. The proxy server ‘distorts' its own IP address by changing its geolocation to the web server
+   An anonymous proxy (also called a distorting proxy) conceals a user's real IP address when they visit a website. 
+   The proxy server ‘distorts' its own IP address by changing its geolocation to the web server
    TOR (The Onion Router) is a free, open-source web browser that routes users' internet traffic through a network of volunteer servers to provide anonymity.
 
 SOCKS:
 - SOCKS (Socket Secure) is an internet protocol that facilitates communication between a client and a server through a proxy server.
-- A network configuration (SOCKS protocol) facilitates communications between servers through a firewall. It routes network traffic or data packets (messages) on behalf of a client. 
-- When you’re using a SOCKS proxy, your IP address is hidden from the internet during data exchange. The IP address that your data is wearing is from the SOCKS proxy. Your personal information is invisible to targeted web pages. 
-- SOCKS proxy uses a total Transmission Control Protocol (TCP) connection with verification. The protocol also applies Secure Shell (SSH) encrypted tunnel for data transfer. 
+- A network configuration (SOCKS protocol) facilitates communications between servers through a firewall. 
+  It routes network traffic or data packets (messages) on behalf of a client. 
+- When you’re using a SOCKS proxy, your IP address is hidden from the internet during data exchange. 
+  The IP address that your data is wearing is from the SOCKS proxy. Your personal information is invisible to targeted web pages. 
+- SOCKS proxy uses a total Transmission Control Protocol (TCP) connection with verification. 
+  The protocol also applies Secure Shell (SSH) encrypted tunnel for data transfer. 
 
 
 HTTP Proxy:
