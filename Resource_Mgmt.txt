@@ -1,0 +1,73 @@
+Watch command:
+- It is used to execute a command repeatedly at specified intervals and display the output in the terminal.
+- It primarily revolving around monitoring changes or continuous updates in command output. 
+- It’s most commonly used to track system uptime, memory, or disk usage. 
+- The Linux watch command will run simultaneously in the terminal until stopped by pressing CTRL+C.
+- Syntax: watch [options] command
+
+E.g: watch -n 2 ls -l  //to monitor the output of the ls -l command every 2 seconds
+
+- Linux watch command runs the user-defined command every two seconds. However, users can easily change the interval by changing its options.
+
+some options:
+-d, –differences: Displays the differences between watch command updates. 
+-n, –interval: Allows users to specify the time interval between output updates in seconds.
+-g : It stops the specified command whenever there are changes in memory consumption.
+
+iostat command:
+- It is used to display input/output statistics for devices and partitions.
+- When experiencing slow system performance or I/O-related problems, It identifies which disks or partitions are experiencing heavy usage, high wait times, or high utilization, which can pinpoint where the performance bottleneck might be occurring.
+- It provides insights into CPU utilization, disk I/O, and overall system load caused by I/O operations. 
+
+[iostat uses files mentioned below to create the reports:  
+/proc/stat Contains the system statistics.
+/proc/uptime Contains the system uptime.
+/proc/diskstats Contains the disks statistics.
+/sys Contains the statistics for block devices.
+/proc/self/mountstats Contains the statistics for network filesystems.
+/dev/disk Contains the persistent device names.]
+
+- Syntax: iostat [options] [device names]
+E.g: iostat -d 2 6   //display device (disk) statistics at an interval of 2 seconds, generating 6 reports in total.
+
+This command will show disk-related statistics like:
+
+[Device: The name of the device being monitored.
+tps (transactions per second): The number of I/O transactions completed per second (combined reads and writes).
+kB_read/s: Kilobytes read per second.
+kB_wrtn/s: Kilobytes written per second.
+kB_read: Total kilobytes read.
+kB_wrtn: Total kilobytes written.]
+
+sar command:
+- It is used to collect, report, and analyze system activity. It stands for "System Activity Reporter" and is part of the sysstat package in most Linux distributions.
+
+
+- Syntax: sar [options] [interval] [count]
+
+E.g: sar -u 5 3  //Monitor CPU usage every 5 seconds for 3 reports.
+sar -r 10 2  //Monitor memory usage every 10 seconds for 2 reports.
+
+[CPU Usage: To view CPU-related statistics:
+
+-u: Displays CPU utilization statistics.
+-r: Shows memory utilization statistics.
+-d: Shows disk utilization statistics.
+-n: Displays network statistics.
+-n DEV: Shows network interface statistics.]
+
+lsof command:
+- It stands for List Open Files.
+- It is for listing down all the open files of a system.
+- It is used to list information about files that are currently open by processes. This includes regular files, directories, sockets, pipes, devices, and more. 
+- Running lsof without any arguments will list all open files on the system along with information about the associated processes.
+- Syntax: lsof [options]
+
+E.g: lsof -i  //Displaying Network Connections
+lsof -p <PID>  //Listing Files by a Specific Process ID (PID)
+lsof -u <username>  //Listing Files by a Specific User
+
+fuser:
+- It is used to identify processes that are currently using specific files, directories, or block devices.
+- Syntax: fuser [options] file/directory/block-device
+- 
