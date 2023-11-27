@@ -66,3 +66,14 @@ Fedora Based Package Manager:
    -Installing a package with YUM only requires the package name, and doesn't require the package location. The tool searches the repositories listed in the repo files from the /etc/yum.repos.d/ directory and installs the latest package version available.
     RPM doesn't support repositories, installing a package requires the full package file name and location. 
    
+
+sudo dpkg -l
+sudo apt-get update vs upgrade
+sudo apt-get clean
+sudo apt-cache search
+sudo apt-get remove apache2
+rpm -qa
+rpm -qi
+dnf list
+yum list installed
+alien --to-deb ...
