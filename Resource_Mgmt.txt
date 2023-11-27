@@ -71,3 +71,9 @@ fuser:
 - It is used to identify processes that are currently using specific files, directories, or block devices.
 - Syntax: fuser [options] file/directory/block-device
 - 
+
+
+chroot command:
+lvscan
+vgchange
+chroot
