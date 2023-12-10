@@ -77,7 +77,7 @@ Fedora Based Package Manager:
     The tool searches the repositories listed in the repo files from the /etc/yum.repos.d/ directory and installs the latest package version available.
     RPM doesn't support repositories, installing a package requires the full package file name and location. 
    
-   
+Remaining:
 sudo dpkg -l
 sudo apt-get update vs upgrade
 sudo apt-get clean
