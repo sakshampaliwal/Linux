@@ -77,9 +77,46 @@ Fedora Based Package Manager:
     The tool searches the repositories listed in the repo files from the /etc/yum.repos.d/ directory and installs the latest package version available.
     RPM doesn't support repositories, installing a package requires the full package file name and location. 
    
+
+dpkg command:
+- It is a tool that is used in debian based OS.
+- It handles the installation, removal, and management of individual .deb packages on the system.
+- It is used to interact with packages on our system. 
+- Syntax: dpkg [options] [.deb package name]
+- options:
+  -i -> to install
+  -r -> to remove
+  -u -> to update
+  -s -> to show status
+
+apt-get update:
+- This command updates the local database of available packages but does not install or upgrade any packages.
+- 
+
+apt-get update vs upgrade:
+
+- sudo apt-get update, it updates the package sources list with the latest versions of the packages in the repositories.
+  Package sources list contains the locations or URLs of some of the repositories from which a package is installed.
+  You can view list: cat /etc/apt/sources.list
+  One such location in these repositories is /ubuntu/dists/bionic-updates/main/source 
+
+- So, whenever we type in apt update it browses these lists from the repositories and copies the latest version of them to the local system. 
+  It actually doesn't install any package on the system.
+
+- "apt upgrade" compares the version of all the packages currently installed on the system with the ones in the list we fetched through apt update and upgrades all of them to their latest versions.
+
+- when upgrading all the packages in the system, we merge both apt update and apt upgrade commands in a single line:
+  sudo apt update && sudo apt upgrade
+
+- You should first run update, then upgrade
+
+
+apt-get clean:
+- 
+
+
+
 Remaining:
-sudo dpkg -l
-sudo apt-get update vs upgrade
 sudo apt-get clean
 sudo apt-cache search
 sudo apt-get remove apache2
