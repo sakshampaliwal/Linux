@@ -70,10 +70,26 @@ lsof -u <username>  //Listing Files by a Specific User
 fuser:
 - It is used to identify processes that are currently using specific files, directories, or block devices.
 - Syntax: fuser [options] file/directory/block-device
-- 
 
 
 chroot command:
-lvscan
-vgchange
-chroot
+- The chroot command changes the apparent root directory of the current process as well as its child processes.
+- In a Unix based system, the root refers to the base directory(/). Chroot creates a fake root environment inside which the process runs. The processes run in such an environment cannot access files and commands outside that environment or we can say that“the process is jailed within that environment”. Therefore the created environment is also called the “chroot jail”.
+- Let's say you have a folder called /mychroot that contains a few programs and files. Normally, your computer sees this folder as just a part of the larger system. But with chroot /mychroot, you're telling a program to pretend that /mychroot is actually the main or "root" folder of the system.
+- Syntax: chroot [OPTION] NEWROOT [COMMAND [ARG]...]
+- If you want to test a program without affecting your main system, you can use chroot to create a separate environment. It's like a safe playground where the program can run without making changes to your real system files.
+- So it lets you temporarily change a program's view of the file system, creating a contained space where it can run and do its thing without messing with the rest of your computer.
+- E.g: sudo chroot /mnt/folder
+
+lvscan command:
+- It is used to scan for all the available logical volumes (LVs) in your system. 
+- When you run lvscan, it scans your system and displays a summary of all the active or available logical volumes.
+
+vgchange command:
+- It is used to change the attributes of a volume group (VG) in the Logical Volume Manager (LVM) system. It allows you to activate or deactivate volume groups, enabling or disabling access to the logical volumes within those groups.
+- The main purpose of vgchange is to activate or deactivate a volume group. Activation makes the logical volumes within the volume group accessible for use, while deactivation prevents access to those logical volumes.
+- When you add new physical volumes or disks to a volume group, you typically need to activate the volume group to make use of the added storage space. Similarly, if you need to perform maintenance or take a volume group offline for some reason, you might deactivate it.
+- Syntax: vgchange [options] <volume_group_name>
+- E.g: vgchange -a  //It activates all volume groups
+       vgchange -a y my_volume_group  //It activate specified volume group
+       vgchange -a n my_volume_group  //It deactivates specified volume group
