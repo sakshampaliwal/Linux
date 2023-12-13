@@ -112,16 +112,70 @@ apt-get update vs upgrade:
 
 
 apt-get clean:
-- 
+- In Ubuntu and Debian operating systems, while using apt-get for installation or up-gradation of packages, the installer packages are downloaded from the remote repositories to local storage in your system.
+- The downloaded packages are in .deb format and they are saved in var/cache/apt/archives/ directory. The system keeps these installer packages in local storage even after you uninstall them. 
+- when we install a package using apt-get, the following happens:
+  It checks if the required package needs a dependency package; what are those packages and whether they are installed or not.
+  Download the package and its dependencies.
+  Install the package.
+- If you upgrade the package, its new version is similarly downloaded and kept on the local storage. After you install or after upgradation you don't need that installer .deb file anymore because you have already installed from it.
+  So, It’s a good idea to remove these files as they are taking your system space.
+- The package files are stored in the cache directory to speed up future installations. Over time, these files can take up significant space on your system.
+  Using the sudo apt-get clean command removes all the package files from the cache directory, freeing up disk space. 
+- The command only removes package files stored in the cache directory, not installed packages.
+- E.g: sudo apt-get clean
 
+
+apt-cache search:
+- It is a command that allows you to explore the available software packages in your system's repositories.
+- Searches the local package cache for packages matching a given keyword or name.
+- Syntax: apt-cache search <keyword>
+
+
+Two ways to remove package:
+1. remove
+2. purge
+
+apt remove:
+- It is used to uninstall or remove a package from your system.
+- This command uninstalls a package from your system while keeping its configuration files intact. 
+- Syntax: sudo apt remove <package-name>
+- To remove multiple packages: sudo apt remove package_1 package_2 package_3
+- To list all installed packages: apt list --installed
+
+apt autoremove:
+- It is used to remove packages that were automatically installed as dependencies for other software but are no longer needed.
+- When you install a program, it often requires other packages (dependencies) to function correctly. However, if you later remove that program, those dependencies might remain on your system, taking up space unnecessarily.
+
+apt purge:
+- It not only removes the package but also deletes the configuration files associated with it.
+- Using purge ensures that when you reinstall the package later, it will be as if it were installed for the first time, without any residual configuration from the previous installation. 
+- Syntax: sudo apt purge <package_name>
+
+rpm command:
+- It is used for package management in RPM-based (Red Hat Package Manager) distributions.
+- It's a powerful tool for installing, querying, verifying, updating, and removing software packages on these systems.
+
+Installation & Update:
+- -i (install): Installs a package from a file or repository.
+- -U (update): Updates an existing package to a newer version.
+- -v (verbose): Shows more detailed information during installation/update.
+- -h (hash marks): Displays progress bar with hash marks.
+
+Removal & Verification:
+- -e (erase): Uninstalls a package.
+- -V (verify): Verifies the integrity of installed packages.
+- -c (checksig): Checks the digital signature of a package file.
+
+Information & Query:
+- -q (query): Displays information about installed packages.
+- -a (all): Lists all installed packages.
+- -f (file): Finds which package owns a specific file.
+- -p (package): Lists files included in a package.
+- -R (requires): Displays a package's dependencies.
 
 
 Remaining:
-sudo apt-get clean
-sudo apt-cache search
-sudo apt-get remove apache2
-rpm -qa
-rpm -qi
 dnf list
 yum list installed
 alien --to-deb ...
