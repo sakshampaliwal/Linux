@@ -175,6 +175,7 @@ Information & Query:
 - -R (requires): Displays a package's dependencies.
 
 
+
 Remaining:
 dnf list
 yum list installed
